@@ -32,7 +32,7 @@ sed -i 's/yuncore,ax820/jdcloud,luban/g' package/boot/uboot-envtools/files/ramip
 grep all5002 -n5 package/boot/uboot-envtools/files/ramips
 
 echo '-----------------载入 mt7621_jdcloud_luban.dts'
-curl --retry 3 -s --globoff "https://gist.githubusercontent.com/vki888/9311d2b0854849f2f8eb3d89e5fb099b/raw/cf24be870753b7f21b547ec2195f49f37cd9c84d/%255Bopenwrt%255Dmt7621_jdcloud_luban_2.dts" -o target/linux/ramips/dts/mt7621_jdcloud_luban.dts
+curl --retry 3 -s --globoff "https://gist.githubusercontent.com/vki888/dffcf844d8ff693d8057e2f3fde545dc/raw/94f0f142e53d9a2b714ae0b18d8927542265d8f4/%255Bopenwrt%255Dmt7621_jdcloud_luban.dts" -o target/linux/ramips/dts/mt7621_jdcloud_luban.dts
 cat target/linux/ramips/dts/mt7621_jdcloud_luban.dts
 
 # fix2 + fix4.2
