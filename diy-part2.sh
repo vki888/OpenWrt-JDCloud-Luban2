@@ -25,6 +25,7 @@ grep timezone -n5 package/base-files/files/bin/config_generate
 
 echo '-----------------默认开启wifi'
 sed -i '/disabled=1/d' package/kernel/mac80211/files/lib/wifi/mac80211.sh 
+grep "devidx}.htmode" -n5 package/kernel/mac80211/files/lib/wifi/mac80211.sh 
 
 # 自定义软件源
 #sed -i 's#downloads.openwrt.org#mirrors.cloud.tencent.com/openwrt#g' /etc/opkg/distfeeds.conf
