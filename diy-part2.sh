@@ -10,14 +10,14 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 kernel_version = "22.03.2"
-case $kernel_version {
+case $kernel_version in
     "22.03.3")
         kernel_md5 = "2974fbe1fa59be88f13eb8abeac8c10b"
         ;;
     "22.03.2")
         kernel_md5 = "c91e62db69d188afca1b6cc5c9e1b72d"
         ;;
-}
+
 echo "-----------------Modify default IP"
 sed -i 's/192.168.1.1/192.168.68.1/g' package/base-files/files/bin/config_generate
 grep  192 -n3 package/base-files/files/bin/config_generate
