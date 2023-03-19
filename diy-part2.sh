@@ -9,8 +9,8 @@
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
-kernel_version="22.03.2"
-case $kernel_version in
+openwrt_version="22.03.2"
+case $openwrt_version in
     "22.03.3")
         kernel_md5="2974fbe1fa59be88f13eb8abeac8c10b"
         ;;
@@ -38,12 +38,12 @@ grep "devidx}.htmode" -n5 package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 echo "'-----------------自定义软件源"
 #sed -i 's#downloads.openwrt.org#mirrors.cloud.tencent.com/openwrt#g' /etc/opkg/distfeeds.conf
-echo "src/gz openwrt_core http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/targets/ramips/mt7621/packages" >> package/system/opkg/files/customfeeds.conf
-echo "src/gz openwrt_base http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/packages/mipsel_24kc/base" >> package/system/opkg/files/customfeeds.conf
-echo "src/gz openwrt_luci http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/packages/mipsel_24kc/luci" >> package/system/opkg/files/customfeeds.conf
-echo "src/gz openwrt_packages http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/packages/mipsel_24kc/packages" >> package/system/opkg/files/customfeeds.conf
-echo "src/gz openwrt_routing http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/packages/mipsel_24kc/routing" >> package/system/opkg/files/customfeeds.conf
-echo "src/gz openwrt_telephony http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/packages/mipsel_24kc/telephony" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_core http://mirrors.cloud.tencent.com/lede/releases/${openwrt_version}/targets/ramips/mt7621/packages" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_base http://mirrors.cloud.tencent.com/lede/releases/${openwrt_version}/packages/mipsel_24kc/base" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_luci http://mirrors.cloud.tencent.com/lede/releases/${openwrt_version}/packages/mipsel_24kc/luci" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_packages http://mirrors.cloud.tencent.com/lede/releases/${openwrt_version}/packages/mipsel_24kc/packages" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_routing http://mirrors.cloud.tencent.com/lede/releases/${openwrt_version}/packages/mipsel_24kc/routing" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_telephony http://mirrors.cloud.tencent.com/lede/releases/${openwrt_version}/packages/mipsel_24kc/telephony" >> package/system/opkg/files/customfeeds.conf
 cat package/system/opkg/files/customfeeds.conf
 
 echo "-----------------修改u-boot的ramips"
