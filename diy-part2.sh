@@ -9,7 +9,15 @@
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
-
+kernel_version = "22.03.3"
+case $kernel_version {
+    "22.03.3")
+        kernel_md5 = "2974fbe1fa59be88f13eb8abeac8c10b"
+        ;;
+    "22.03.2")
+        kernel_md5 = "c91e62db69d188afca1b6cc5c9e1b72d"
+        ;;
+}
 echo "-----------------Modify default IP"
 sed -i 's/192.168.1.1/192.168.68.1/g' package/base-files/files/bin/config_generate
 grep  192 -n3 package/base-files/files/bin/config_generate
@@ -27,14 +35,15 @@ echo '-----------------默认开启wifi'
 sed -i '/disabled=1/d' package/kernel/mac80211/files/lib/wifi/mac80211.sh 
 grep "devidx}.htmode" -n5 package/kernel/mac80211/files/lib/wifi/mac80211.sh 
 
-# 自定义软件源
+echo "'-----------------自定义软件源"
 #sed -i 's#downloads.openwrt.org#mirrors.cloud.tencent.com/openwrt#g' /etc/opkg/distfeeds.conf
-echo "src/gz openwrt_core http://mirrors.cloud.tencent.com/lede/releases/22.03.3/targets/ramips/mt7621/packages" >> package/system/opkg/files/customfeeds.conf
-echo "src/gz openwrt_base http://mirrors.cloud.tencent.com/lede/releases/22.03.3/packages/mipsel_24kc/base" >> package/system/opkg/files/customfeeds.conf
-echo "src/gz openwrt_luci http://mirrors.cloud.tencent.com/lede/releases/22.03.3/packages/mipsel_24kc/luci" >> package/system/opkg/files/customfeeds.conf
-echo "src/gz openwrt_packages http://mirrors.cloud.tencent.com/lede/releases/22.03.3/packages/mipsel_24kc/packages" >> package/system/opkg/files/customfeeds.conf
-echo "src/gz openwrt_routing http://mirrors.cloud.tencent.com/lede/releases/22.03.3/packages/mipsel_24kc/routing" >> package/system/opkg/files/customfeeds.conf
-echo "src/gz openwrt_telephony http://mirrors.cloud.tencent.com/lede/releases/22.03.3/packages/mipsel_24kc/telephony" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_core http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/targets/ramips/mt7621/packages" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_base http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/packages/mipsel_24kc/base" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_luci http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/packages/mipsel_24kc/luci" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_packages http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/packages/mipsel_24kc/packages" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_routing http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/packages/mipsel_24kc/routing" >> package/system/opkg/files/customfeeds.conf
+echo "src/gz openwrt_telephony http://mirrors.cloud.tencent.com/lede/releases/${kernel_version}/packages/mipsel_24kc/telephony" >> package/system/opkg/files/customfeeds.conf
+cat package/system/opkg/files/customfeeds.conf
 
 echo "-----------------修改u-boot的ramips"
 sed -i 's/yuncore,ax820/jdcloud,luban/g' package/boot/uboot-envtools/files/ramips
@@ -78,9 +87,6 @@ grep xiaomi,redmi-router-ac2100 -n3 target/linux/ramips/mt7621/base-files/etc/bo
 #sed -i '/ethernet: ethernet@1e100000 {/i\ethsys: ethsys@1e000000 {\n\tcompatible = "mediatek,mt7621-ethsys",\n\t\t"syscon";\n\treg = <0x1e000000 0x1000>;\n\t#clock-cells = <1>;\n\t};\n\n'  ./target/linux/ramips/dts/mt7621.dtsi	
 
 echo '-----------------定义kernel MD5，与官网一致'
-v22_03_3="2974fbe1fa59be88f13eb8abeac8c10b"
-v22_03_2="c91e62db69d188afca1b6cc5c9e1b72d"
-kernek_md5=${v22_03_2}
 echo ${kernek_md5} > ./.vermagic
 cat .vermagic
 
