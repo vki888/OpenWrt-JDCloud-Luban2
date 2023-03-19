@@ -78,7 +78,10 @@ grep xiaomi,redmi-router-ac2100 -n3 target/linux/ramips/mt7621/base-files/etc/bo
 #sed -i '/ethernet: ethernet@1e100000 {/i\ethsys: ethsys@1e000000 {\n\tcompatible = "mediatek,mt7621-ethsys",\n\t\t"syscon";\n\treg = <0x1e000000 0x1000>;\n\t#clock-cells = <1>;\n\t};\n\n'  ./target/linux/ramips/dts/mt7621.dtsi	
 
 echo '-----------------定义kernel MD5，与官网一致'
-echo '2974fbe1fa59be88f13eb8abeac8c10b' > ./.vermagic
+v22_03_3="2974fbe1fa59be88f13eb8abeac8c10b"
+v22_03_2="c91e62db69d188afca1b6cc5c9e1b72d"
+kernek_md5=${v22_03_2}
+echo ${kernek_md5} > ./.vermagic
 cat .vermagic
 
 sed -i 's/^\tgrep.*vermagic/\tcp -f \$(TOPDIR)\/\.vermagic \$(LINUX_DIR)\/\.vermagic/g' include/kernel-defaults.mk
