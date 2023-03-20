@@ -9,7 +9,7 @@
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
-openwrt_version="21.02.5"
+openwrt_version="22.03.3"
 case $openwrt_version in
     "22.03.3")
         kernel_md5="2974fbe1fa59be88f13eb8abeac8c10b"
