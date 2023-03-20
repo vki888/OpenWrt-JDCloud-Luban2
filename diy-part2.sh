@@ -9,7 +9,7 @@
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
-openwrt_version="22.03.2"
+openwrt_version="21.02.5"
 case $openwrt_version in
     "22.03.3")
         kernel_md5="2974fbe1fa59be88f13eb8abeac8c10b"
@@ -23,7 +23,7 @@ case $openwrt_version in
 esac
 
 echo "-----------------Modify default IP"
-sed -i 's/192.168.1.1/192.168.68.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.0.2/g' package/base-files/files/bin/config_generate
 grep  192 -n3 package/base-files/files/bin/config_generate
 
 echo '-----------------修改时区为东八区'
